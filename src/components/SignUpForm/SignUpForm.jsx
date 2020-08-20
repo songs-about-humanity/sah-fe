@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { signup } from '../../services/users';
 
-export default function SignUpForm() {
+export default function SignUpForm({ passId }) {
   const [username, setUserName] = useState('');
   const [pin, setPIN] = useState('');
+  const [userId, setUserId] = useState('');
 
   const handleChange = ({ target }) => {
     if(target.name === 'username') setUserName(target.value);
@@ -11,7 +13,8 @@ export default function SignUpForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username, pin);
+    signup({ username, pin })
+    .then(user => passId(user))
   };
 
   return (
