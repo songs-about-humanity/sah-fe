@@ -8,6 +8,8 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import LogInForm from '../LogInForm/LogInForm';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
+import Room from '../Room/Room';
+
 
 export default function App() {
   
@@ -18,6 +20,7 @@ export default function App() {
         <Route path="/login" component={LogInForm} />
         <Route path="/create" component={CreateRoom} />
         <Route path="/join" component={JoinRoom} />
+        <Route path="/room" component={Room} />
       </Switch>
     </Router>
   );
