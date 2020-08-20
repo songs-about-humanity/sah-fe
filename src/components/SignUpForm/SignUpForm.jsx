@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { signup } from '../../services/users';
+import { useDispatch } from 'react-redux';
 
 export default function SignUpForm({ passId }) {
   const [username, setUserName] = useState('');
   const [pin, setPIN] = useState('');
-  const [userId, setUserId] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     if(target.name === 'username') setUserName(target.value);
@@ -14,7 +15,7 @@ export default function SignUpForm({ passId }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     signup({ username, pin })
-    .then(user => passId(user))
+      .then(user => dispatch({ type: 'SET_ID', payload: user._id }));
   };
 
   return (
