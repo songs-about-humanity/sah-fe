@@ -1,8 +1,8 @@
 # sah-fe
 
-User Stories
+### User Stories
 
-As a new user, I want clear instructions, so that I can follow the setup process easily and get started playing.
+**As a new user, I want clear instructions, so that I can follow the setup process easily and get started playing.
 
 Feature Tasks: 
 * Info button on the splash page that explains the app objectives
@@ -12,7 +12,7 @@ Acceptance Tests:
 * Ensure that inputs and clearly labeled and only accepts the correct type of information
 * Provide an error message if the room code is incorrect and redirects to the Create/Join Room page
 
-As a judge, I want to know what my task is, picking a song that resonates with the me closely to the topic, and have clear indications of how to pick a winner, so that I can judge accurately and know that my actions are being received  
+**As a judge, I want to know what my task is, picking a song that resonates with the me closely to the topic, and have clear indications of how to pick a winner, so that I can judge accurately and know that my actions are being received  
 
 Feature Tasks: 
 * Prompt that indicates who the judge is
@@ -25,7 +25,7 @@ Acceptance Tests:
 * Continues onto the next round
 * Chosen winner has one more point
 
-As a participant, I want responsive feedback from the app, so that I know I’m engaging with it correctly even if I’m not hosting, and/or don’t have Spotify Premium
+**As a participant, I want responsive feedback from the app, so that I know I’m engaging with it correctly even if I’m not hosting, and/or don’t have Spotify Premium
 
 Feature Tasks: 
 * State-gates (prompts, timeouts, etc.) to keep events from occurring until users are ready for them
@@ -39,7 +39,7 @@ etc.
 Acceptance Tests:
 * Identify key, user-facing lifecycle events, and ensure that each one corresponds to a view that delivers this information to the user
 
-As a consumer of this product, I want to be able to entertain my friends with funny musical responses to prompts.
+**As a consumer of this product, I want to be able to entertain my friends with funny musical responses to prompts.
 
 Feature Tasks:
 * User can see the prompt they have to respond to.
