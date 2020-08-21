@@ -10,7 +10,7 @@ export default function JoinRoom() {
   const handleSubmit = (event) => {
     event.preventDefault();
     socket.emit('JOIN', roomCode);
-    history.push('/room');
+    history.push(`/room/${roomCode}`);
     console.log(`you have joined the room ${roomCode}!`);
   };
 

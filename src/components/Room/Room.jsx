@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useSocketSelector } from 'react-socket-io-hooks';
-
-
+import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 
 const Room = () => {
-  const { room_id, host, participants } = useSocketSelector(state => state);
-  console.log(room_id, participants);
+  let { room_id, host, participants } = useSocketSelector(state => state);
 
+  console.log(room_id, participants);
   
   return (
     <div>
@@ -15,6 +14,7 @@ const Room = () => {
         participants.map(participant => <p key={participant}>{participant}</p>)
       }
       <p>You entered a room!</p>
+      <SpotifyPlayer />
     </div>
   );
 };
