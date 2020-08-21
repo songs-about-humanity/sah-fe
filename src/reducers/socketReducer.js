@@ -11,8 +11,8 @@ export default function reducer(state, action) {
         room_id: action.payload.room_id, 
         host: action.payload.room.host,
         participants: action.payload.room.participants };
-    case 'JOIN':
-      return { ...state, host: action.payload.host, participants: action.payload.participants };
+    case 'UPDATE_PARTICIPANT_LIST':
+      return { ...state, participants: action.payload.participants };
 
     default: 
       return state;

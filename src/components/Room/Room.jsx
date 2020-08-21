@@ -9,9 +9,9 @@ const Room = () => {
   
   return (
     <div>
-      {host}
-      {
-        participants.map(participant => <p key={participant?.id}>{participant?.id}</p>)
+      <p>Host: {host}</p>
+      <p>Participants</p> {
+        participants.map(participant => <p key={participant}>{participant}</p>)
       }
       <p>You entered a room!</p>
     </div>
