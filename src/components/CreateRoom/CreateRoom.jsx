@@ -8,7 +8,7 @@ const CreateRoom = () => {
   const socket = useSocket();
   const history = useHistory();
   const handleClick = () => {
-    socket.emit('JOIN'); 
+    socket.emit('CREATE'); 
     // const user = useSelector();
     // go to new room
     // adds host status
