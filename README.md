@@ -1,6 +1,6 @@
 # sah-fe
 
-### User Stories
+## User Stories
 
 **As a new user, I want clear instructions, so that I can follow the setup process easily and get started playing.**
 
@@ -53,3 +53,6 @@ Acceptance Tests:
 * Ensure that a user’s submission will be saved.
 * Ensure that a user’s submission will be played.
 * Ensure a user’s score will increase if their option is picked.
+
+## Domain Modeling
+https://miro.com/welcomeonboard/uixBObcVqu7ScJqg36ktsOBZMgzWAjqDsVFVgXnFxGHtqYq0Q9Ua69A0JetbwQHy
