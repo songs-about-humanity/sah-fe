@@ -4,8 +4,9 @@ import { useSocketSelector } from 'react-socket-io-hooks';
 
 
 const Room = () => {
-  const { room_id, host, participants }  = useSocketSelector(state => state);
+  const { room_id, host, participants } = useSocketSelector(state => state);
   console.log(room_id, participants);
+
   
   return (
     <div>
