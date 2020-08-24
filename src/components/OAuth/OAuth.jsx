@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export const OAuth = () => {
   const authEndpoint = 'https://accounts.spotify.com/authorize';
   const clientId = process.env.SPOTIFY_CLIENT_ID;
-  const redirectUri = 'http://localhost:7891/create';
+  const redirectUri = 'http://localhost:7891/home';
   const scopes = [
     'streaming',
     'user-modify-playback-state',

@@ -3,7 +3,7 @@ import { useSocketSelector } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 
 const Room = () => {
-  let { room_id, host, participants, token } = useSocketSelector(state => state);
+  let { room_id, host, participants } = useSocketSelector(state => state);
 
   console.log(room_id, participants);
   

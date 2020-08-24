@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +10,7 @@ import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
 import Room from '../Room/Room';
 import { OAuth } from '../OAuth/OAuth';
+import Home from '../Home/Home';
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
+        <Route exact path="/home" component={Home}/>
         <Route exact path="/signup" component={SignUpForm}/>
         <Route exact path="/login" component={LogInForm} />
         <Route exact path="/oauth" component={OAuth}/>
