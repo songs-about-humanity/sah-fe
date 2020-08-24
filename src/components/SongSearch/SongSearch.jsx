@@ -5,7 +5,7 @@ const spotifyApi = new SpotifyWebApi();
 
 export const SongSearch = () => {
   const [songQuery, setSongQuery] = useState('');
-  // const socket = useSocket();
+  const socket = useSocket();
   let { token } = useSocketSelector(state => state);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -31,8 +31,13 @@ export const SongSearch = () => {
       }, error => {
         console.error(error);
       });
-      // socket.emit('SEARCH', { songQuery, token });
+
     console.log(`you've sent the search ${songQuery}`);
+  };
+
+  const handleSelect = (uri) => {
+    console.log('selected: ', uri);
+    socket.emit('CHOICE', uri);
   };
 
   return (
@@ -48,12 +53,14 @@ export const SongSearch = () => {
       </form>
       <div>
         {
-          searchResults.map(result => {
-            return <ul>
-              <li>uri: {result.uri}</li>
-              <li>title: {result.title}</li>
-              <li>artist: {result.artist}</li>
-            </ul>
+          searchResults.map((songData, i) => {
+            const { uri, title, artist } = songData;
+            return <ul key={i}>
+              {/* <li>uri: {songData.uri}</li> */}
+              <li>{title}</li>
+              <li>{artist}</li>
+              <button onClick={() => handleSelect(uri)}>Select</button>
+            </ul>;
           })
         }
       </div>
