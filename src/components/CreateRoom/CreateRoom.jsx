@@ -2,9 +2,10 @@ import React from 'react';
 import { useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom'; 
 import { useSelector } from 'react-redux';
-const chance = require('chance').Chance();
+import Chance from 'chance';
 
 const CreateRoom = () => {
+  const chance = new Chance();
   const token = useSelector(state => state.token);
   const socket = useSocket();
   const history = useHistory();
