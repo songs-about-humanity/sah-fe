@@ -1,7 +1,8 @@
 export const initialState = {
   room_id: null,
   host: null,
-  participants: []
+  participants: [],
+  token: ''
 };
 
 export default function reducer(state, action) {

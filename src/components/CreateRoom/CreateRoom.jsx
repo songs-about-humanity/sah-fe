@@ -18,7 +18,7 @@ const CreateRoom = () => {
     }, {});
 
   // this gets rid of the hash from url so it looks pretty again
-  window.location.hash = '';
+  // window.location.hash = '';
 
   let token = hash.access_token;
   console.log(token);
