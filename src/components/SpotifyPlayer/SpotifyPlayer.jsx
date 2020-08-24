@@ -117,7 +117,7 @@ export default function SpotifyPlayer() {
     >
           Login to Spotify
     </button> */}
-    <button onClick={() => play(deviceId, token)}>Play</button>
+    <button disabled={!deviceId} onClick={() => play(deviceId, token)}>Play</button>
     <img id="current-track"/>
     <h3 id="current-track-name"></h3> 
   </div>);
