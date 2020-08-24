@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { useSocketSelector } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
+import { SongSearch } from '../SongSearch/SongSearch';
 
 const Room = () => {
   let { room_id, host, participants, token } = useSocketSelector(state => state);
@@ -15,6 +16,7 @@ const Room = () => {
       }
       <p>You entered a room!</p>
       <SpotifyPlayer />
+      <SongSearch/>
     </div>
   );
 };

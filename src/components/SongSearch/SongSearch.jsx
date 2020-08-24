@@ -7,6 +7,7 @@ export const SongSearch = () => {
   const [songQuery, setSongQuery] = useState('');
   // const socket = useSocket();
   let { token } = useSocketSelector(state => state);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = ({ target }) => {
     setSongQuery(target.value);
@@ -14,14 +15,23 @@ export const SongSearch = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     spotifyApi.setAccessToken(token);
     spotifyApi.searchTracks(songQuery)
       .then(data => {
         console.log(data.tracks.items);
+        
+        const relevantData = data.tracks.items.map(result => ({
+          uri: result.uri,
+          title: result.name,
+          artist: result.artists[0].name
+        }));
+
+        setSearchResults(relevantData);
       }, error => {
         console.error(error);
       });
-    // socket.emit('SEARCH', { songQuery, token });
+      // socket.emit('SEARCH', { songQuery, token });
     console.log(`you've sent the search ${songQuery}`);
   };
 
@@ -36,6 +46,17 @@ export const SongSearch = () => {
         </input>
         <button>Search</button>
       </form>
+      <div>
+        {
+          searchResults.map(result => {
+            return <ul>
+              <li>uri: {result.uri}</li>
+              <li>title: {result.title}</li>
+              <li>artist: {result.artist}</li>
+            </ul>
+          })
+        }
+      </div>
     </>
   );
 };
