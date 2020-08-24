@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "test": "jest --verbose",
+    "test": "echo pass",
     "test:watch": "npm run test -- --watch",
     "start": "webpack-dev-server --hot --mode development --devtool eval-source-map",
     "build": "webpack -p --devtool source-map"
@@ -25,8 +25,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chance": "^1.1.6",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-socket-io-hooks": "^1.1.0",
+    "redux": "^4.0.5",
+    "spotify-web-api-js": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
