@@ -1,9 +1,12 @@
-import React from 'react';
-import { useSocket } from 'react-socket-io-hooks';
+import React, { useState } from 'react';
+import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
+const SpotifyWebApi = require('spotify-web-api-js');
+const spotifyApi = new SpotifyWebApi();
 
 export const SongSearch = () => {
   const [songQuery, setSongQuery] = useState('');
-  const socket = useSocket();
+  // const socket = useSocket();
+  let { token } = useSocketSelector(state => state);
 
   const handleChange = ({ target }) => {
     setSongQuery(target.value);
@@ -11,7 +14,15 @@ export const SongSearch = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    socket.emit('SEARCH', songQuery);
+    spotifyApi.setAccessToken(token);
+    spotifyApi.searchTracks(songQuery)
+      .then(data => {
+        console.log(data.tracks.items);
+      }, error => {
+        console.error(error);
+      });
+    // socket.emit('SEARCH', { songQuery, token });
+    console.log(`you've sent the search ${songQuery}`);
   };
 
   return (
@@ -20,7 +31,7 @@ export const SongSearch = () => {
         <input
           type='text'
           name='song-search'
-          value='song-search'
+          placeholder='song-search'
           onChange={handleChange}>
         </input>
         <button>Search</button>
