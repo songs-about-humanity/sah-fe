@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
 
-
 const Home = () => {
   const dispatch = useDispatch();
 
