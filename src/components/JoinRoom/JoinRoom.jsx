@@ -11,6 +11,7 @@ export default function JoinRoom() {
     event.preventDefault();
     socket.emit('JOIN', roomCode);
     history.push(`/room/${roomCode}`);
+    // eslint-disable-next-line no-console
     console.log(`you have joined the room ${roomCode}!`);
   };
 

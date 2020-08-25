@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSocketSelector } from 'react-socket-io-hooks';
+import { useSelector } from 'react-redux';
+import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
  
 // Play a specified track on the Web Playback SDK's device ID
 function play(device_id, _token) {
@@ -11,47 +12,16 @@ function play(device_id, _token) {
     success: function(data) { 
       console.log(data);
     }
+    
   });
 }
 
-
-// let spotifyApi = new SpotifyWebApi();
-// spotifyApi.setAccessToken(_token);
-// spotifyApi
-//   .getUserPlaylists() // note that we don't pass a user id
-//   .then(
-//     function(data) {
-//       console.log('User playlists', data);
-//     },
-//     function(err) {
-//       console.error(err);
-//     }
-//   );
-
-// spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE').then(
-//   function(data) {
-//     console.log('Artist albums', data);
-//   },
-//   function(err) {
-//     console.error(err);
-//   }
-// );
-
-// spotifyApi.getMyDevices().then(
-//   function(data) {
-//     console.log('devices', data);
-//   },
-//   function(err) {
-//     console.error(err);
-//   }
-// );
-
-// console.log('device id', spotifyApi.device_id);
-
 export default function SpotifyPlayer() {
+  const socket = useSocket();
+  const { room_id } = useSocketSelector(state => state);
   const [deviceId, setDeviceId] = useState('');
   const [spotifyReady, setSpotifyReady] = useState(false);
-  const { token } = useSocketSelector(state => state);
+  const { token } = useSelector(state => state);
 
 
   useEffect(() => {
@@ -111,13 +81,12 @@ export default function SpotifyPlayer() {
     };
   }, [spotifyReady, token]);
 
+  socket.on('PLAY_ALL', () => {
+    play(deviceId, token);
+  });
+
   return (<div>
-    {/* <button 
-      onClick={() => window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`}
-    >
-          Login to Spotify
-    </button> */}
-    <button disabled={!deviceId} onClick={() => play(deviceId, token)}>Play</button>
+    <button disabled={!deviceId} onClick={() => socket.emit('PLAY', room_id)}>Play</button>
     <img id="current-track"/>
     <h3 id="current-track-name"></h3> 
   </div>);

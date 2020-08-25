@@ -1,28 +1,12 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
-import { useSocketSelector } from 'react-socket-io-hooks';
 import { useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom'; 
-const chance = require('chance').Chance();
+import { useSelector } from 'react-redux';
+import Chance from 'chance';
 
 const CreateRoom = () => {
-  const hash = window.location.hash
-    .substring(1)
-    .split('&')
-    .reduce(function(initial, item) {
-      if(item) {
-        var parts = item.split('=');
-        initial[parts[0]] = decodeURIComponent(parts[1]);
-      }
-      return initial;
-    }, {});
-
-  // this gets rid of the hash from url so it looks pretty again
-  // window.location.hash = '';
-
-  let token = hash.access_token;
-  console.log(token);
-
+  const chance = new Chance();
+  const token = useSelector(state => state.token);
   const socket = useSocket();
   const history = useHistory();
   
