@@ -2,7 +2,9 @@ export const initialState = {
   room_id: null,
   host: null,
   participants: [],
-  token: ''
+  token: '',
+  songQueue: [],
+  nowPlaying: ''
 };
 
 export default function reducer(state, action) {
@@ -12,12 +14,13 @@ export default function reducer(state, action) {
         room_id: action.payload.room_id, 
         host: action.payload.room.host,
         participants: action.payload.room.participants,
-        token: action.payload.room.token
+        token: action.payload.room.token,
+        songQueue: action.payload.room.songQueue
       };
     case 'UPDATE_PARTICIPANT_LIST':
       return { ...state, participants: action.payload.participants };
-    case 'SET_ROOM_INFO':
-      return action.payload;
+    case 'PLAY_SONG':
+      return { ...state, nowPlaying: action.payload };
 
     default: 
       return state;
