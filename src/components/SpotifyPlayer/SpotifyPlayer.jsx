@@ -4,10 +4,10 @@ import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
  
 // Play a specified track on the Web Playback SDK's device ID
 
-function play(device_id, _token) {
+function play(device_id, _token, uri) {
   fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
     method: 'PUT',
-    body: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
+    body: `{"uris": ["${uri}"]}`,
     headers: {
       'Authorization': `Bearer ${_token}`
     }
