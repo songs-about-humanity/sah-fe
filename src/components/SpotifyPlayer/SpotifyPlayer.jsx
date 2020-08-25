@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
  
 // Play a specified track on the Web Playback SDK's device ID
-function play(device_id, _token) {
+function play(device_id, _token, uri) {
   $.ajax({
     url: 'https://api.spotify.com/v1/me/player/play?device_id=' + device_id,
     type: 'PUT',
-    data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
+    data: `{"uris": ["${uri}"]}`,
     beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token);},
     success: function(data) { 
       console.log(data);
@@ -16,9 +16,9 @@ function play(device_id, _token) {
   });
 }
 
-export default function SpotifyPlayer() {
+export default function SpotifyPlayer({ queue }) {
   const socket = useSocket();
-  const { room_id } = useSocketSelector(state => state);
+  const { room_id, nowPlaying } = useSocketSelector(state => state);
   const [deviceId, setDeviceId] = useState('');
   const [spotifyReady, setSpotifyReady] = useState(false);
   const { token } = useSelector(state => state);
@@ -81,12 +81,31 @@ export default function SpotifyPlayer() {
     };
   }, [spotifyReady, token]);
 
-  socket.on('PLAY_ALL', () => {
-    play(deviceId, token);
-  });
+  const handleClick = (songData) => {
+    console.log('clicked play for ' + songData.title + ' in room ' + room_id);
+    socket.emit('PLAY', { room_id, songData });
+  };
+
+  useEffect(() => {
+    play(deviceId, token, nowPlaying.uri);
+  }, [nowPlaying]);
 
   return (<div>
-    <button disabled={!deviceId} onClick={() => socket.emit('PLAY', room_id)}>Play</button>
+    {
+      queue.map((queueItem, i) => {
+        const { participant, songData } = queueItem;
+        return <>
+          <p>{songData.artist} - {songData.title}</p>
+          <p>chosen by {participant}</p>
+          <button
+            key={i}
+            disabled={!deviceId}
+            onClick={() => handleClick(songData)}>
+              Play
+          </button>
+        </>;
+      })
+    }
     <img id="current-track"/>
     <h3 id="current-track-name"></h3> 
   </div>);
