@@ -35,9 +35,9 @@ export const SongSearch = () => {
     console.log(`you've sent the search ${songQuery}`);
   };
 
-  const handleSelect = (uri) => {
-    console.log('selected: ', uri);
-    socket.emit('CHOICE', { room_id, uri });
+  const handleSelect = (songData) => {
+    console.log('selected: ', songData);
+    socket.emit('CHOICE', { room_id, songData });
   };
 
   return (
@@ -54,12 +54,12 @@ export const SongSearch = () => {
       <div>
         {
           searchResults.map((songData, i) => {
-            const { uri, title, artist } = songData;
+            const { title, artist } = songData;
             return <ul key={i}>
               {/* <li>uri: {songData.uri}</li> */}
               <li>{title}</li>
               <li>{artist}</li>
-              <button onClick={() => handleSelect(uri)}>Select</button>
+              <button onClick={() => handleSelect(songData)}>Select</button>
             </ul>;
           })
         }

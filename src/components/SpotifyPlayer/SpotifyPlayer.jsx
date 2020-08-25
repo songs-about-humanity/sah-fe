@@ -81,26 +81,26 @@ export default function SpotifyPlayer({ queue }) {
     };
   }, [spotifyReady, token]);
 
-  const handleClick = (uri) => {
-    console.log('clicked play for ' + uri + ' in room ' + room_id);
-    socket.emit('PLAY', { room_id, uri });
+  const handleClick = (songData) => {
+    console.log('clicked play for ' + songData.title + ' in room ' + room_id);
+    socket.emit('PLAY', { room_id, songData });
   };
 
-  socket.on('PLAY_SONG', (uri) => {
-    play(deviceId, token, uri);
+  socket.on('PLAY_SONG', (songData) => {
+    play(deviceId, token, songData.uri);
   });
 
   return (<div>
     {
       queue.map((queueItem, i) => {
-        const { participant, uri } = queueItem;
+        const { participant, songData } = queueItem;
         return <>
-          <p>{uri}</p>
+          <p>{songData.artist} - {songData.title}</p>
           <p>chosen by {participant}</p>
           <button
             key={i}
             disabled={!deviceId}
-            onClick={() => handleClick(uri)}>
+            onClick={() => handleClick(songData)}>
               Play
           </button>
         </>;
