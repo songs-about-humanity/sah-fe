@@ -7,7 +7,7 @@ import { SocketProvider } from 'react-socket-io-hooks';
 import reducer, { initialState } from './reducers/socketReducer';
 
 render(
-  <SocketProvider uri='http://localhost:7890' reducer={reducer} initialState={initialState} >
+  <SocketProvider uri={process.env.BACKEND_URI} reducer={reducer} initialState={initialState} >
     <Provider store={store}>
       <App />
     </Provider>
