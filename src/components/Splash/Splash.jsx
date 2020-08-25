@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { OAuth } from '../OAuth/OAuth';
 
 const Splash = () => {
