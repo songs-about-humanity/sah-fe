@@ -6,7 +6,7 @@ const spotifyApi = new SpotifyWebApi();
 export const SongSearch = () => {
   const [songQuery, setSongQuery] = useState('');
   const socket = useSocket();
-  let { token } = useSocketSelector(state => state);
+  let { room_id, token } = useSocketSelector(state => state);
   const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = ({ target }) => {
@@ -37,7 +37,7 @@ export const SongSearch = () => {
 
   const handleSelect = (uri) => {
     console.log('selected: ', uri);
-    socket.emit('CHOICE', uri);
+    socket.emit('CHOICE', { room_id, uri });
   };
 
   return (
