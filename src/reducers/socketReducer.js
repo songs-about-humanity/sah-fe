@@ -3,7 +3,8 @@ export const initialState = {
   host: null,
   participants: [],
   token: '',
-  songQueue: []
+  songQueue: [],
+  nowPlaying: ''
 };
 
 export default function reducer(state, action) {
@@ -18,8 +19,8 @@ export default function reducer(state, action) {
       };
     case 'UPDATE_PARTICIPANT_LIST':
       return { ...state, participants: action.payload.participants };
-    // case 'PLAY_SONG':
-    //   return action.payload;
+    case 'PLAY_SONG':
+      return { ...state, nowPlaying: action.payload };
 
     default: 
       return state;

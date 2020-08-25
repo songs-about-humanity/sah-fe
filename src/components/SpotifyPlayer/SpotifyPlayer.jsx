@@ -18,7 +18,7 @@ function play(device_id, _token, uri) {
 
 export default function SpotifyPlayer({ queue }) {
   const socket = useSocket();
-  const { room_id } = useSocketSelector(state => state);
+  const { room_id, nowPlaying } = useSocketSelector(state => state);
   const [deviceId, setDeviceId] = useState('');
   const [spotifyReady, setSpotifyReady] = useState(false);
   const { token } = useSelector(state => state);
@@ -86,9 +86,9 @@ export default function SpotifyPlayer({ queue }) {
     socket.emit('PLAY', { room_id, songData });
   };
 
-  socket.on('PLAY_SONG', (songData) => {
-    play(deviceId, token, songData.uri);
-  });
+  useEffect(() => {
+    play(deviceId, token, nowPlaying.uri);
+  }, [nowPlaying]);
 
   return (<div>
     {
