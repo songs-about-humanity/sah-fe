@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
@@ -6,6 +6,7 @@ import JoinRoom from '../JoinRoom/JoinRoom';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
 
   let token;
   useEffect(() => {
@@ -25,8 +26,25 @@ const Home = () => {
     // window.location.hash = '';
   }, [token]);
 
+  const handleChange = ({ target }) => {
+    if(target.name === 'username') setUsername(target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch({ type: 'SET_USERNAME', payload: username });
+  };
+
   return (
     <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter Username"
+          onChange={handleChange}></input>
+        <button>Submit</button>
+      </form>
       <CreateRoom />
       <JoinRoom />
     </div>

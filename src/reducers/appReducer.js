@@ -8,6 +8,9 @@ export default function reducer(state, action) {
       console.log(action.payload, action.type);
       return { ...state, token: action.payload };
 
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+      
     default:
       return state;
   }
