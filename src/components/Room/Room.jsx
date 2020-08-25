@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React from 'react';
 import { useSocketSelector } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
