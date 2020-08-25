@@ -4,7 +4,8 @@ export const initialState = {
   participants: [],
   token: '',
   songQueue: [],
-  nowPlaying: ''
+  nowPlaying: '',
+  round: 0
 };
 
 export default function reducer(state, action) {
@@ -21,7 +22,8 @@ export default function reducer(state, action) {
       return { ...state, participants: action.payload.participants };
     case 'PLAY_SONG':
       return { ...state, nowPlaying: action.payload };
-
+    case 'NEXT_ROUND':
+      return { ...state, round: state.round + 1 };
     default: 
       return state;
   }

@@ -83,10 +83,8 @@ export default function SpotifyPlayer({ queue }) {
   }, [nowPlaying]);
 
   return (<div>
-    <button disabled={!deviceId} onClick={() => socket.emit('PLAY', room_id)}>Play</button>
     <img id="current-track" src={albumArt}/>
     <h3 id="current-track-name">{currentTrackName}</h3> 
-      
     {
       queue.map((queueItem, i) => {
         const { participant, songData } = queueItem;

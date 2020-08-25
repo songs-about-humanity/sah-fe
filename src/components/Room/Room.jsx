@@ -1,12 +1,21 @@
-import React from 'react';
-import { useSocketSelector } from 'react-socket-io-hooks';
+import React, { useState, useEffect } from 'react';
+import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
 
 const Room = () => {
   let { room_id, host, participants, songQueue } = useSocketSelector(state => state);
-
-  console.log(room_id, participants, songQueue);
+  const [playerHasSelected, setPlayerHasSelected] = useState(false);
+  const socket = useSocket();
+  
+  useEffect(() => {
+    participants.forEach(participant => {
+      if(participant.hasSelected === true && participant.id === socket.id) setPlayerHasSelected(true);
+    });
+  }, [participants]);
+  // have 'hasSelected' in state
+  // need to see if an id of a person who has selected is the current user
+  // disable button if that is the case
 
   return (
     <div>
@@ -17,7 +26,7 @@ const Room = () => {
       <p>You entered a room!</p>
       <p>Song Queue:</p>
       <SpotifyPlayer queue={songQueue} />
-      <SongSearch/>
+      {!playerHasSelected && <SongSearch/>}
     </div>
   );
 };
