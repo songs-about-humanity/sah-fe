@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
+import { useHistory } from 'react-router-dom';
 
 const Room = () => {
-  let { room_id, host, participants, songQueue, round, judge } = useSocketSelector(state => state);
+  let { room_id, host, participants, songQueue, round, judge, winner } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
+  const history = useHistory();
+
+
+  useEffect(() => {
+    if(winner) {
+      history.push('/results');
+    }
+  }, [winner]);
 
   useEffect(() => {
     setPlayerHasSelected(false);
@@ -42,7 +51,7 @@ const Room = () => {
     <div>
       <p>Judge: {judge?.name}</p>
       <p>Participants</p> {
-        participants.map(participant => <p key={participant?.id}>{participant?.name}</p>)
+        participants.map(participant => <p key={participant?.id}><h3>{participant?.name}</h3><h4>Score: {participant?.score}</h4></p>)
       }
       <p>You entered a room!</p>
       <p>Song Queue:</p>

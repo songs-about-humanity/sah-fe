@@ -2,7 +2,6 @@ export const initialState = {
   room_id: null,
   host: null,
   participants: [],
-  token: '',
   songQueue: [],
   nowPlaying: '',
   judge: null,
@@ -27,6 +26,18 @@ export default function reducer(state, action) {
       return { ...state, nowPlaying: action.payload };
     case 'NEXT_ROUND':
       return { ...state, round: state.round + 1 };
+    case 'GAME_WINNER': 
+      return { ...state, winner: action.payload };
+    case 'RESET':
+      return { 
+        room_id: null,
+        host: null,
+        participants: [],
+        songQueue: [],
+        nowPlaying: '',
+        judge: null,
+        round: 0
+      };
     default: 
       return state;
   }
