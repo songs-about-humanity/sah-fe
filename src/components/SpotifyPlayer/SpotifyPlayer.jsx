@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
- 
+
 // Play a specified track on the Web Playback SDK's device ID
 
 function play(device_id, _token, uri) {
@@ -21,7 +21,8 @@ export default function SpotifyPlayer({ queue }) {
   const [spotifyReady, setSpotifyReady] = useState(false);
   const [albumArt, setAlbumArt] = useState('');
   const [currentTrackName, setCurrentTrackName] = useState('');
-  const { token } = useSelector(state => state);
+  const { token, participant } = useSelector(state => state);
+
 
 
   useEffect(() => {
@@ -38,8 +39,8 @@ export default function SpotifyPlayer({ queue }) {
   }, []);
 
   useEffect(() => {
-    if(!spotifyReady) return;  
-    
+    if(!spotifyReady) return;
+
     const player = new Spotify.Player({
       name: 'Web Playback SDK Template',
       getOAuthToken: cb => { cb(token); }
@@ -78,30 +79,41 @@ export default function SpotifyPlayer({ queue }) {
     socket.emit('PLAY', { room_id, songData });
   };
 
+  const handleWinner = (participant) => {
+    console.log('selected winner', participant);
+    socket.emit('WINNER', { room_id, winner: participant });
+  };
+
   useEffect(() => {
     play(deviceId, token, nowPlaying.uri);
   }, [nowPlaying]);
 
   return (<div>
     <img id="current-track" src={albumArt}/>
-    <h3 id="current-track-name">{currentTrackName}</h3> 
+    <h3 id="current-track-name">{currentTrackName}</h3>
     {
       queue.map((queueItem, i) => {
         const { participant, songData } = queueItem;
         return <>
           <p>{songData.artist} - {songData.title}</p>
-          <p>chosen by {participant}</p>
+          <p>chosen by {participant.name}</p>
           <button
             key={i}
             disabled={!deviceId}
             onClick={() => handleClick(songData)}>
               Play
           </button>
+          <button
+            key={i}
+            disabled={!deviceId}
+            onClick={() => handleWinner(participant)}>
+              Select Winner
+          </button>
         </>;
       })
     }
-      
+
     <img id="current-track"/>
-    <h3 id="current-track-name"></h3> 
+    <h3 id="current-track-name"></h3>
   </div>);
 }
