@@ -8,7 +8,7 @@ const Room = () => {
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(true);
   const socket = useSocket();
-  
+
   useEffect(() => {
     participants.forEach(participant => {
       if(participant.hasSelected === true && participant.id === socket.id) setPlayerHasSelected(true);
@@ -41,7 +41,7 @@ const Room = () => {
       }
       <p>You entered a room!</p>
       <p>Song Queue:</p>
-      <SpotifyPlayer queue={songQueue} />
+      <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
     </div>
   );

@@ -14,14 +14,14 @@ function play(device_id, _token, uri) {
   });
 }
 
-export default function SpotifyPlayer({ queue }) {
+export default function SpotifyPlayer({ queue, isJudge }) {
   const socket = useSocket();
   const { room_id, nowPlaying } = useSocketSelector(state => state);
   const [deviceId, setDeviceId] = useState('');
   const [spotifyReady, setSpotifyReady] = useState(false);
   const [albumArt, setAlbumArt] = useState('');
   const [currentTrackName, setCurrentTrackName] = useState('');
-  const { token, participant } = useSelector(state => state);
+  const { token } = useSelector(state => state);
 
 
 
@@ -96,19 +96,20 @@ export default function SpotifyPlayer({ queue }) {
         const { participant, songData } = queueItem;
         return <>
           <p>{songData.artist} - {songData.title}</p>
-          <p>chosen by {participant.name}</p>
-          <button
-            key={i}
-            disabled={!deviceId}
-            onClick={() => handleClick(songData)}>
+          { isJudge && <>
+            <button
+              key={i}
+              disabled={!deviceId}
+              onClick={() => handleClick(songData)}>
               Play
-          </button>
-          <button
-            key={i}
-            disabled={!deviceId}
-            onClick={() => handleWinner(participant)}>
+            </button>
+            <button
+              key={i}
+              disabled={!deviceId}
+              onClick={() => handleWinner(participant)}>
               Select Winner
-          </button>
+            </button>
+          </>}
         </>;
       })
     }
