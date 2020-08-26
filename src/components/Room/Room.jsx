@@ -10,6 +10,10 @@ const Room = () => {
   const socket = useSocket();
 
   useEffect(() => {
+    setPlayerHasSelected(false);
+  }, [round]);
+
+  useEffect(() => {
     participants.forEach(participant => {
       if(participant.hasSelected === true && participant.id === socket.id) setPlayerHasSelected(true);
     });
