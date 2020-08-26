@@ -6,7 +6,7 @@ import { SongSearch } from '../SongSearch/SongSearch';
 const Room = () => {
   let { room_id, host, participants, songQueue, round, judge } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
-  const [isJudge, setIsJudge] = useState(true);
+  const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const Room = () => {
 
   useEffect(() => {
     setIsJudge(socket.id === judge?.id);
+    console.log(isJudge);
   }, [judge]);
 
   // [a, b, c, d]
