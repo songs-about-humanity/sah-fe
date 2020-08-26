@@ -10,9 +10,9 @@ import LogInForm from '../LogInForm/LogInForm';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
 import Room from '../Room/Room';
-import { OAuth } from '../OAuth/OAuth';
 import Home from '../Home/Home';
 import Results from '../Results/Results';
+import './App.css';
 
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
         <Route exact path="/home" component={Home}/>
         <Route exact path="/signup" component={SignUpForm}/>
         <Route exact path="/login" component={LogInForm} />
-        <Route exact path="/oauth" component={OAuth}/>
+        {/* <Route exact path="/oauth" component={OAuth}/> */}
         <Route exact path="/create" component={CreateRoom} />
         <Route exact path="/join" component={JoinRoom} />
         <Route exact path="/room/:code" component={Room} />
