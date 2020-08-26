@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import Splash from '../Splash/Splash';
 import SignUpForm from '../SignUpForm/SignUpForm';
 import LogInForm from '../LogInForm/LogInForm';
 import CreateRoom from '../CreateRoom/CreateRoom';
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
+        <Route exact path="/" component={Splash} />
         <Route exact path="/home" component={Home}/>
         <Route exact path="/signup" component={SignUpForm}/>
         <Route exact path="/login" component={LogInForm} />
