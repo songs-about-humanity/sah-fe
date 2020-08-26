@@ -14,6 +14,15 @@ function play(device_id, _token, uri) {
   });
 }
 
+function pause(device_id, _token) {
+  fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${device_id}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${_token}`
+    }
+  });
+}
+
 export default function SpotifyPlayer({ queue, isJudge }) {
   const socket = useSocket();
   const { room_id, nowPlaying } = useSocketSelector(state => state);
@@ -80,6 +89,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   };
 
   const handleWinner = (participant) => {
+    pause(deviceId, token);
     console.log('selected winner', participant);
     socket.emit('WINNER', { room_id, winner: participant });
   };
@@ -102,6 +112,12 @@ export default function SpotifyPlayer({ queue, isJudge }) {
               disabled={!deviceId}
               onClick={() => handleClick(songData)}>
               Play
+            </button>
+            <button
+              key={i}
+              disabled={!deviceId}
+              onClick={() => pause(deviceId, token)}>
+              Pause
             </button>
             <button
               key={i}
