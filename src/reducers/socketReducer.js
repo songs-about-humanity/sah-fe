@@ -5,6 +5,7 @@ export const initialState = {
   token: '',
   songQueue: [],
   nowPlaying: '',
+  judge: null,
   round: 0
 };
 
@@ -16,7 +17,8 @@ export default function reducer(state, action) {
         host: action.payload.room.host,
         participants: action.payload.room.participants,
         token: action.payload.room.token,
-        songQueue: action.payload.room.songQueue
+        songQueue: action.payload.room.songQueue,
+        judge: action.payload.room.judge
       };
     case 'UPDATE_PARTICIPANT_LIST':
       return { ...state, participants: action.payload.participants };
