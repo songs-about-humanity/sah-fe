@@ -11,6 +11,7 @@ import JoinRoom from '../JoinRoom/JoinRoom';
 import Room from '../Room/Room';
 import { OAuth } from '../OAuth/OAuth';
 import Home from '../Home/Home';
+import Results from '../Results/Results';
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
         <Route exact path="/create" component={CreateRoom} />
         <Route exact path="/join" component={JoinRoom} />
         <Route exact path="/room/:code" component={Room} />
+        <Route exact path="/results" component={Results} />
       </Switch>
     </Router>
   );
