@@ -5,7 +5,7 @@ import { SongSearch } from '../SongSearch/SongSearch';
 import { useHistory } from 'react-router-dom';
 
 const Room = () => {
-  let { room_id, host, participants, songQueue, round, judge, winner } = useSocketSelector(state => state);
+  let { room_id, host, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
@@ -13,6 +13,7 @@ const Room = () => {
 
 
   useEffect(() => {
+    console.log('this is the current prompt', currentPrompt);
     if(winner) {
       history.push('/results');
     }
@@ -51,9 +52,9 @@ const Room = () => {
     <div>
       <p>Judge: {judge?.name}</p>
       <p>Participants</p> {
-        participants.map(participant => <p key={participant?.id}><h3>{participant?.name}</h3><h4>Score: {participant?.score}</h4></p>)
+        participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)
       }
-      <p>You entered a room!</p>
+      <p>Prompt: {currentPrompt}</p>
       <p>Song Queue:</p>
       <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
