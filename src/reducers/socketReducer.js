@@ -25,6 +25,8 @@ export default function reducer(state, action) {
       return { ...state, participants: action.payload.participants };
     case 'PLAY_SONG':
       return { ...state, nowPlaying: action.payload };
+    case 'PAUSE': 
+      return { ...state, nowPlaying: '' };
     case 'NEXT_ROUND':
       return { ...state, round: state.round + 1 };
     case 'GAME_WINNER': 
