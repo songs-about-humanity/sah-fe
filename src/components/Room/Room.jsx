@@ -3,6 +3,7 @@ import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
 import { useHistory } from 'react-router-dom';
+import './Room.css';
 
 const Room = () => {
   let { room_id, host, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
@@ -53,16 +54,27 @@ const Room = () => {
   // disable button if that is the case
 
   return (
-    <div>
-      <h1>{room_id}</h1>
-      <p>Judge: {judge?.name}</p>
-      <p>Participants</p> {
-        participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)
-      }
-      <p>Prompt: {currentPrompt}</p>
-      <p>Song Queue:</p>
-      <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
+    <div className="room-container">
+      <section>
+        <h1><span className="room-emphasis">Room:</span> {room_id}</h1>
+        <p>
+          Send this code to your friends to join!
+        </p>
+      </section>
+      <section className="judge-participants-container">
+        <p><span className="role-emphasis">Judge:</span> {judge?.name}</p>
+        <p><span className="role-emphasis">Participants:</span></p> {
+          participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)
+        }
+      </section>
+      <section className="prompt-container">
+        <p>Prompt: {currentPrompt}</p>
+      </section>
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
+      <section className="queue-container">
+        <p>Song Queue:</p>
+        <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
+      </section>
     </div>
   );
 };

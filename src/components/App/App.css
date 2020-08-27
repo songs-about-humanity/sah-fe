@@ -37,10 +37,24 @@ h1, h2, h3 {
   font-size: 2.5em;
   color: #000066;
   font-family: 'Amatic SC', cursive;
+  font-weight: 400;
 }
 
 em {
   color: #000066;
   font-family: 'Lora', serif;
   white-space: nowrap;
+}
+
+p {
+  margin: 2em 0;
+}
+
+.room-container p {
+  margin: auto;
+}
+
+.judge-participants-container {
+  display: flex;
+  flex-direction: row;
 }
