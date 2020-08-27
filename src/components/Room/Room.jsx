@@ -11,8 +11,12 @@ const Room = () => {
   const socket = useSocket();
   const history = useHistory();
 
+  useEffect(() => {
+    document.title = room_id;
+  }, [room_id]);
 
   useEffect(() => {
+    
     console.log('this is the current prompt', currentPrompt);
     if(winner) {
       history.push('/results');

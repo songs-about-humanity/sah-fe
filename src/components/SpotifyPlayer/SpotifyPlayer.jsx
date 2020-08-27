@@ -31,8 +31,14 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   const [albumArt, setAlbumArt] = useState('');
   const [currentTrackName, setCurrentTrackName] = useState('');
   const { token } = useSelector(state => state);
+ 
 
-
+  useEffect(() => {
+    console.log('in useeffect');
+    if(!nowPlaying) {
+      pause(deviceId, token);
+    }
+  }, [nowPlaying]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -62,8 +68,14 @@ export default function SpotifyPlayer({ queue, isJudge }) {
 
     // Playback status updates
     player.addListener('player_state_changed', state => {
-      setAlbumArt(state.track_window.current_track.album.images[0].url);
-      setCurrentTrackName(state.track_window.current_track.name);
+      
+      if(state.paused) {
+        setAlbumArt('');
+        setCurrentTrackName('');
+      } else {
+        setAlbumArt(state.track_window.current_track.album.images[0].url);
+        setCurrentTrackName(state.track_window.current_track.name);
+      }
     });
 
     player.addListener('ready', data => {
@@ -86,6 +98,12 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   const handleClick = (songData) => {
     console.log('clicked play for ' + songData.title + ' in room ' + room_id);
     socket.emit('PLAY', { room_id, songData });
+  };
+
+  const handlePause = (deviceId, token) => {
+    console.log('in here');
+    socket.emit('PAUSE', room_id);
+    pause(deviceId, token);
   };
 
   const handleWinner = (participant) => {
@@ -116,7 +134,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
             <button
               key={i}
               disabled={!deviceId}
-              onClick={() => pause(deviceId, token)}>
+              onClick={() => handlePause(deviceId, token)}>
               Pause
             </button>
             <button
@@ -130,7 +148,5 @@ export default function SpotifyPlayer({ queue, isJudge }) {
       })
     }
 
-    <img id="current-track"/>
-    <h3 id="current-track-name"></h3>
   </div>);
 }
