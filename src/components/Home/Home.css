@@ -1,0 +1,30 @@
+.home-container {
+  background-color: #00CCFF;
+  height: 100vh;
+  width: 100%;
+  display: block;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  width: 50%;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+.username-input {
+  height: 10vh;
+  width: 100%;
+  margin-bottom: 200px;
+}

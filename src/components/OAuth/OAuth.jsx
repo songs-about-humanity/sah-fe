@@ -1,4 +1,5 @@
 import React from 'react';
+import './OAuth.css';
 
 export const OAuth = () => {
   const authEndpoint = 'https://accounts.spotify.com/authorize';
@@ -13,7 +14,8 @@ export const OAuth = () => {
 
   return (
     <div>
-      <button 
+      <button
+        className="auth-button" 
         onClick={() => window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`}
       >
             Login to Spotify

@@ -1,11 +1,16 @@
 import React from 'react';
 import { OAuth } from '../OAuth/OAuth';
-
+import './Splash.css';
+import logo from '../../../public/assets/SAH_transparent.svg';
+ 
 export const Splash = () => {
   return (
-    <div>
-      Login to Spotify here:
-      <OAuth />
+    <div className="splash-container">
+      <div className="header-container">
+        <img src={logo} />
+        <OAuth />
+      </div>
+   
     </div>
   );
 };
