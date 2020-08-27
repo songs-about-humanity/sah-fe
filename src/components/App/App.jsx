@@ -18,18 +18,20 @@ import './App.css';
 export default function App() {
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Splash} />
-        <Route exact path="/home" component={Home}/>
-        <Route exact path="/signup" component={SignUpForm}/>
-        <Route exact path="/login" component={LogInForm} />
-        {/* <Route exact path="/oauth" component={OAuth}/> */}
-        <Route exact path="/create" component={CreateRoom} />
-        <Route exact path="/join" component={JoinRoom} />
-        <Route exact path="/room/:code" component={Room} />
-        <Route exact path="/results" component={Results} />
-      </Switch>
-    </Router>
+    <div className="app-wrapper">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Splash} />
+          <Route exact path="/home" component={Home}/>
+          <Route exact path="/signup" component={SignUpForm}/>
+          <Route exact path="/login" component={LogInForm} />
+          {/* <Route exact path="/oauth" component={OAuth}/> */}
+          <Route exact path="/create" component={CreateRoom} />
+          <Route exact path="/join" component={JoinRoom} />
+          <Route exact path="/room/:code" component={Room} />
+          <Route exact path="/results" component={Results} />
+        </Switch>
+      </Router>
+    </div>
   );
 }

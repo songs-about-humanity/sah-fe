@@ -1,4 +1,8 @@
-.splash-container {
+p {
+  margin: 2em 0;
+}
+
+/* .splash-container {
   background-color: #00CCFF;
   height: 100vh;
   width: 100%;
@@ -24,4 +28,4 @@
   transform: translate(-50%, -50%);
 
   text-align: center;
-}
+} */

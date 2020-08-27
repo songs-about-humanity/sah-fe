@@ -34,20 +34,20 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
-      <div className="controls-container">
-        <input
-          className="username-input"
-          type="text"
-          name="username"
-          placeholder="Enter Username"
-          onChange={handleChange}>
-        </input>      
-        <CreateRoom />
-        <JoinRoom />
-      </div>
-
+    // <div className="home-container">
+    <div className="controls-container">
+      <input
+        className="username-input"
+        type="text"
+        name="username"
+        placeholder="Enter Username"
+        onChange={handleChange}>
+      </input>      
+      <CreateRoom />
+      <JoinRoom />
     </div>
+
+  // </div>
   );
 };
 
