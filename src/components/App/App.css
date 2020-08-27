@@ -14,7 +14,12 @@
 }
 
 .app-wrapper {
+  padding: 0 2em;
   margin: 4em 2em;
+  max-width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button, input {
@@ -71,7 +76,10 @@ p {
 .judge-container {
   width: 60%;
   text-align: right;
-  margin-right: 3em;
+}
+
+.judge-participants-container img {
+  margin: 0 1em;
 }
 
 .participants-container {
@@ -134,4 +142,11 @@ hr {
 footer {
   padding-top: 2em;
   text-align: center;
+}
+
+.results-earbud {
+  height: 20vh;
+  position: absolute;
+  right: 10vw;
+  margin-top: 2em;
 }

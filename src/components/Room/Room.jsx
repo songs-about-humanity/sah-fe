@@ -3,6 +3,7 @@ import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
 import { useHistory } from 'react-router-dom';
+import verticalEarbuds from '../../../public/assets/vertical_earbuds.svg';
 
 const Room = () => {
   let { room_id, host, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
@@ -65,6 +66,7 @@ const Room = () => {
           <p><span className="role-emphasis">Judge:</span></p>
           <p>{judge?.name}</p>
         </div>
+        <img src={verticalEarbuds} />
         <div className="participants-container">
           <p><span className="role-emphasis">Participants:</span></p> {
             participants.map(participant => <><p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p></>)

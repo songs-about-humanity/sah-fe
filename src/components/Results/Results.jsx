@@ -2,6 +2,8 @@ import React from 'react';
 import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom';
 import crowd from '../../../public/assets/concert_crowd.svg';
+import resultsEarbud from '../../../public/assets/results_earbud.svg';
+import verticalEarbuds from '../../../public/assets/vertical_earbuds.svg';
 
 const Results = () => {
   const history = useHistory();
@@ -20,6 +22,7 @@ const Results = () => {
           <p><span className="role-emphasis">Winner:</span></p>
           <p>{winner?.name}</p>
         </div>
+        <img src={verticalEarbuds} />
         <div className="participants-container">
           <p><span className="role-emphasis">Participants:</span></p> {
             participants.map(participant => <><p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p></>)
@@ -36,6 +39,7 @@ const Results = () => {
       <footer>
         <small><a href="https://www.vecteezy.com/free-vector/concert">Concert Vectors by Vecteezy</a></small>
       </footer>
+      <img src={resultsEarbud} className="results-earbud" />
     </div>
   );
 };

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .username-container {
@@ -11,6 +11,11 @@
 
 .create-join-container div {
   margin: 0 .5em;
+}
+
+.earbud {
+  position: relative;
+  z-index: -1;
 }
 
 /* .home-container {
