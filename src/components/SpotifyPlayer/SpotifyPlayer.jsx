@@ -116,10 +116,9 @@ export default function SpotifyPlayer({ queue, isJudge }) {
     play(deviceId, token, nowPlaying.uri);
   }, [nowPlaying]);
 
-  return (<div>
-    <img id="current-track" src={albumArt}/>
-    <h3 id="current-track-name">{currentTrackName}</h3>
+  return (<div className="queue-container">
     <div className="song-list">
+      <p><b>Song Queue:</b></p>
       {
         queue.map((queueItem, i) => {
           const { participant, songData } = queueItem;
@@ -149,5 +148,12 @@ export default function SpotifyPlayer({ queue, isJudge }) {
         })
       }
     </div>
+    {
+      (currentTrackName !== '') && <div>
+        <h3>Now Playing</h3>
+        <img id="current-track" src={albumArt}/>
+        <p className="role-emphasis" id="current-track-name">{currentTrackName}</p>
+      </div>
+    }
   </div>);
 }

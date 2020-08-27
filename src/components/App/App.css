@@ -40,6 +40,10 @@ h1, h2, h3 {
   font-weight: 400;
 }
 
+a, a:visited, a:hover {
+  color: #000066;
+}
+
 em {
   color: #000066;
   font-family: 'Lora', serif;
@@ -58,6 +62,10 @@ p {
   display: flex;
   flex-direction: row;
   margin-top: 1em;
+}
+
+.judge-participants-container p {
+  margin: auto;
 }
 
 .judge-container {
@@ -105,4 +113,25 @@ hr {
 
 .song-list p {
   margin-top: .5em;
+}
+
+.queue-container img {
+  width: 100%;
+}
+
+.queue-container h3 {
+  margin-top: 1em;
+}
+
+.play-again-container {
+  margin-top: 1.5em;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+footer {
+  padding-top: 2em;
+  text-align: center;
 }

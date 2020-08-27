@@ -76,8 +76,7 @@ const Room = () => {
       </section>
       <hr></hr>
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
-      <section className="queue-container">
-        <p><b>Song Queue:</b></p>
+      <section>
         <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
       </section>
     </div>

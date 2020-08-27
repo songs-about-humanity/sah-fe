@@ -14,6 +14,9 @@ export const Splash = () => {
         </p>
         <OAuth />
       </section>
+      <footer>
+        <a href="#">About the developers</a>
+      </footer>
     </>
   );
 };
