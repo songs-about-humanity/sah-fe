@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 
@@ -14,7 +14,7 @@
 }
 
 .app-wrapper {
-  margin: 6em 2em;
+  margin: 4em 2em;
 }
 
 button, input {
@@ -57,4 +57,52 @@ p {
 .judge-participants-container {
   display: flex;
   flex-direction: row;
+  margin-top: 1em;
+}
+
+.judge-container {
+  width: 60%;
+  text-align: right;
+  margin-right: 3em;
+}
+
+.participants-container {
+  width: 40%
+}
+
+.role-emphasis {
+  color: #000066;
+  font-family: 'Lora', serif;
+}
+
+.prompt-container {
+  background-color: white;
+  padding: 5px;
+  margin: 2em 0em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid white;
+  margin: 2em 0em;
+}
+
+.song-search {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.song-search button {
+  width: 30%;
+}
+
+.song-list button {
+  width: fit-content;
+  display: inline-block;
+  padding: 4px;
+}
+
+.song-list p {
+  margin-top: .5em;
 }

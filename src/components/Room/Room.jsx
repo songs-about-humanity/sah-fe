@@ -3,7 +3,6 @@ import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
 import { useHistory } from 'react-router-dom';
-import './Room.css';
 
 const Room = () => {
   let { room_id, host, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
@@ -17,7 +16,7 @@ const Room = () => {
   }, [room_id]);
 
   useEffect(() => {
-    
+
     console.log('this is the current prompt', currentPrompt);
     if(winner) {
       history.push('/results');
@@ -62,17 +61,23 @@ const Room = () => {
         </p>
       </section>
       <section className="judge-participants-container">
-        <p><span className="role-emphasis">Judge:</span> {judge?.name}</p>
-        <p><span className="role-emphasis">Participants:</span></p> {
-          participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)
-        }
+        <div className="judge-container">
+          <p><span className="role-emphasis">Judge:</span></p>
+          <p>{judge?.name}</p>
+        </div>
+        <div className="participants-container">
+          <p><span className="role-emphasis">Participants:</span></p> {
+            participants.map(participant => <><p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p></>)
+          }
+        </div>
       </section>
       <section className="prompt-container">
-        <p>Prompt: {currentPrompt}</p>
+        <p><b>Prompt: </b> {currentPrompt}</p>
       </section>
+      <hr></hr>
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
       <section className="queue-container">
-        <p>Song Queue:</p>
+        <p><b>Song Queue:</b></p>
         <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
       </section>
     </div>

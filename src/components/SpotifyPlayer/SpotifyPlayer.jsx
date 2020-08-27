@@ -31,7 +31,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   const [albumArt, setAlbumArt] = useState('');
   const [currentTrackName, setCurrentTrackName] = useState('');
   const { token } = useSelector(state => state);
- 
+
 
   useEffect(() => {
     console.log('in useeffect');
@@ -68,7 +68,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
 
     // Playback status updates
     player.addListener('player_state_changed', state => {
-      
+
       if(state.paused) {
         setAlbumArt('');
         setCurrentTrackName('');
@@ -119,34 +119,35 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   return (<div>
     <img id="current-track" src={albumArt}/>
     <h3 id="current-track-name">{currentTrackName}</h3>
-    {
-      queue.map((queueItem, i) => {
-        const { participant, songData } = queueItem;
-        return <>
-          <p>{songData.artist} - {songData.title}</p>
-          { isJudge && <>
-            <button
-              key={i}
-              disabled={!deviceId}
-              onClick={() => handleClick(songData)}>
+    <div className="song-list">
+      {
+        queue.map((queueItem, i) => {
+          const { participant, songData } = queueItem;
+          return <>
+            <p>{songData.artist} - {songData.title}</p>
+            { isJudge && <>
+              <button
+                key={i}
+                disabled={!deviceId}
+                onClick={() => handleClick(songData)}>
               Play
-            </button>
-            <button
-              key={i}
-              disabled={!deviceId}
-              onClick={() => handlePause(deviceId, token)}>
+              </button>
+              <button
+                key={i}
+                disabled={!deviceId}
+                onClick={() => handlePause(deviceId, token)}>
               Pause
-            </button>
-            <button
-              key={i}
-              disabled={!deviceId}
-              onClick={() => handleWinner(participant)}>
+              </button>
+              <button
+                key={i}
+                disabled={!deviceId}
+                onClick={() => handleWinner(participant)}>
               Select Winner
-            </button>
-          </>}
-        </>;
-      })
-    }
-
+              </button>
+            </>}
+          </>;
+        })
+      }
+    </div>
   </div>);
 }
