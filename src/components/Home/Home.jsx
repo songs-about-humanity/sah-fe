@@ -35,17 +35,40 @@ const Home = () => {
 
   return (
     // <div className="home-container">
-    <div className="controls-container">
-      <input
-        className="username-input"
-        type="text"
-        name="username"
-        placeholder="Enter Username"
-        onChange={handleChange}>
-      </input>      
-      <CreateRoom />
-      <JoinRoom />
-    </div>
+    <>
+      <h1>
+        Let&#39;s Get Started...
+      </h1>
+      <div className="username-container">
+        <p>
+          <em>First,</em> pick a username to display to your group
+        </p>
+        <input
+          className="username-input"
+          type="text"
+          name="username"
+          placeholder="Enter Username"
+          onChange={handleChange}>
+        </input>
+      </div>
+      <div className="create-join-container">
+        <div>
+          <p>
+            <em>Second,</em> create a new room
+          </p>
+          <CreateRoom />
+        </div>
+        <p>
+          <em>-or-</em>
+        </p>
+        <div>
+          <p>
+            join an existing room
+          </p>
+          <JoinRoom />
+        </div>
+      </div>
+    </>
 
   // </div>
   );

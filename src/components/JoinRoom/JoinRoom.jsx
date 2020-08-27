@@ -31,7 +31,7 @@ export default function JoinRoom() {
           placeholder="Enter Room Code"
           onChange={handleChange}
         />
-        <button>Join Room</button>
+        <button>Join</button>
       </form>
     </>
   );

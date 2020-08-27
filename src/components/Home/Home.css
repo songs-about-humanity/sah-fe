@@ -1,3 +1,18 @@
+.create-join-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.username-container {
+  width: 60%;
+}
+
+.create-join-container div {
+  margin: 0 .5em;
+}
+
 /* .home-container {
   background-color: #00CCFF;
   height: 100vh;
