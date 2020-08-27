@@ -18,7 +18,8 @@ export default function reducer(state, action) {
         token: action.payload.room.token,
         songQueue: action.payload.room.songQueue,
         judge: action.payload.room.judge,
-        round: action.payload.room.round
+        round: action.payload.room.round,
+        currentPrompt: action.payload.room.currentPrompt
       };
     case 'UPDATE_PARTICIPANT_LIST':
       return { ...state, participants: action.payload.participants };

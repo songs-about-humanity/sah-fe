@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { spotifyRedirectLogin } from '../OAuth/OAuth';
 
 const Room = () => {
-  let { host, participants, songQueue, round, judge, winner } = useSocketSelector(state => state);
+  let { participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
   const { room_id } = useParams();
@@ -42,6 +42,7 @@ const Room = () => {
   }, [token]);
 
   useEffect(() => {
+    console.log('this is the current prompt', currentPrompt);
     if(winner) {
       history.push('/results');
     }
@@ -80,9 +81,9 @@ const Room = () => {
     <div>
       <p>Judge: {judge?.name}</p>
       <p>Participants</p> {
-        participants.map(participant => <p key={participant?.id}><h3>{participant?.name}</h3><h4>Score: {participant?.score}</h4></p>)
+        participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)
       }
-      <p>You entered a room!</p>
+      <p>Prompt: {currentPrompt}</p>
       <p>Song Queue:</p>
       <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
       {(!playerHasSelected && !isJudge) && <SongSearch/>}
