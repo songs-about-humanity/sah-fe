@@ -54,6 +54,7 @@ const Room = () => {
 
   return (
     <div>
+      <h1>{room_id}</h1>
       <p>Judge: {judge?.name}</p>
       <p>Participants</p> {
         participants.map(participant => <><h3 key={participant?.id}>{participant?.name}</h3><h4>Score: {participant?.score}</h4></>)

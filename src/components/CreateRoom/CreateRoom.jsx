@@ -3,6 +3,7 @@ import { useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Chance from 'chance';
+import './CreateRoom.css';
 
 const CreateRoom = () => {
   const chance = new Chance();
@@ -27,7 +28,7 @@ const CreateRoom = () => {
   };
   return (
     <div>
-      <button onClick={handleClick}>Create New Room</button>
+      <button className="create-room" onClick={handleClick}>Create New Room</button>
     </div>
   );
 };

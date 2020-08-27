@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
+import './Home.css';
 
 
 const Home = () => {
@@ -33,15 +34,19 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        name="username"
-        placeholder="Enter Username"
-        onChange={handleChange}>
-      </input>
-      <CreateRoom />
-      <JoinRoom />
+    <div className="home-container">
+      <div className="controls-container">
+        <input
+          className="username-input"
+          type="text"
+          name="username"
+          placeholder="Enter Username"
+          onChange={handleChange}>
+        </input>      
+        <CreateRoom />
+        <JoinRoom />
+      </div>
+
     </div>
   );
 };
