@@ -25,7 +25,7 @@ const Home = () => {
       dispatch({ type: 'SET_TOKEN', payload: token });
     }
     
-    // window.location.hash = '';
+    window.location.hash = '';
   }, [token]);
 
   const handleChange = ({ target }) => {
