@@ -2,15 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { useSocketSelector, useSocket } from 'react-socket-io-hooks';
 import SpotifyPlayer from '../SpotifyPlayer/SpotifyPlayer';
 import { SongSearch } from '../SongSearch/SongSearch';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { spotifyRedirectLogin } from '../OAuth/OAuth';
 
 const Room = () => {
-  let { room_id, host, participants, songQueue, round, judge, winner } = useSocketSelector(state => state);
+  let { host, participants, songQueue, round, judge, winner } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
+  const { room_id } = useParams();
+  console.log(room_id);
   const socket = useSocket();
   const history = useHistory();
+  const dispatch = useDispatch();
+  let { token } = useSelector(state => state);
 
+  useEffect(() => {
+    if(!token) {
+      const hash = window.location.hash
+        .substring(1)
+        .split('&')
+        .reduce(function(initial, item) {
+          if(item) {
+            var parts = item.split('=');
+            initial[parts[0]] = decodeURIComponent(parts[1]);
+          }
+          return initial;
+        }, {});
+      token = hash.access_token;
+      if(!token) {
+        spotifyRedirectLogin(process.env.SPOTIFY_REDIRECT_ROOM + '/' + room_id);
+      }
+  
+      console.log('setting token');
+      dispatch({ type: 'SET_TOKEN', payload: token });
+      console.log('joiining room');
+      socket.emit('JOIN', { room_id: room_id, name: 'player' });
+    }
+  }, [token]);
 
   useEffect(() => {
     if(winner) {

@@ -32,8 +32,6 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   const [currentTrackName, setCurrentTrackName] = useState('');
   const { token } = useSelector(state => state);
 
-
-
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://sdk.scdn.co/spotify-player.js';

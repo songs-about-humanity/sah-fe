@@ -25,7 +25,7 @@ export default function App() {
         <Route exact path="/oauth" component={OAuth}/>
         <Route exact path="/create" component={CreateRoom} />
         <Route exact path="/join" component={JoinRoom} />
-        <Route exact path="/room/:code" component={Room} />
+        <Route exact path="/room/:room_id/" component={Room} />
         <Route exact path="/results" component={Results} />
       </Switch>
     </Router>
