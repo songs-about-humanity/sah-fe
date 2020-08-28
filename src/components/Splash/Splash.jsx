@@ -1,6 +1,7 @@
 import React from 'react';
 import { OAuth } from '../OAuth/OAuth';
 import logo from '../../../public/assets/SAH_transparent.svg';
+import { Link } from 'react-router-dom';
  
 export const Splash = () => {
   return (
@@ -15,7 +16,7 @@ export const Splash = () => {
         <OAuth />
       </section>
       <footer>
-        <a href="#">About the developers</a>
+        <h2><Link to ="/about">About the developers</Link></h2>
       </footer>
     </>
   );

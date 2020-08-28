@@ -9,7 +9,11 @@
   <meta name="theme-color" content="#00ccff" />
   <link rel="apple-touch-icon" href="../public/images/logo.png" />
   <link rel="icon" type="image/png" href="../public/images/logo.png" />
+<<<<<<< HEAD
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+=======
+  <link rel="manifest" href="./manifest.json" />
+>>>>>>> 106de64517f7d88067a99ffba5128c0727f4416c
   <meta name="description" content="Songs About Humanity game built in React" />
 </head>
 
@@ -19,7 +23,7 @@
   <script>
   if('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('../serviceworker.js')
+      navigator.serviceWorker.register('./serviceworker.js')
       .then((reg) => console.log('Success: ', reg.scope))
       .catch((err) => console.log('Failure: ', err))
     })
