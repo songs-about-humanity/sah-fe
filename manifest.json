@@ -1,0 +1,16 @@
+{
+  "short_name": "S-A-H",
+  "name": "Songs About Humanity",
+  "icons": [
+    {
+      "src": "/public/images/logo.png",
+      "type": "image/png",
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00ccff",
+  "background_color": "#ffffff"
+}

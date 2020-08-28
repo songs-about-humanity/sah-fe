@@ -1,0 +1,58 @@
+.about-me-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 60%;
+  text-align: center;
+  margin: auto;
+}
+
+.about-me-div {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 600px) {
+.about-me-div {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+}
+
+
+.about-me-card {
+  margin: 80px 50px;
+  text-align: center;
+  border: 2px solid white;
+  padding: 20px;
+}
+
+.pic {
+  width: 200px;
+}
+
+.about {
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+}
+
+
+.link-image {
+  width: 50px;
+  margin: 0px 10px;
+}
+
+.link-div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}  

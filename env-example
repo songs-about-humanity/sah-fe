@@ -1,0 +1,3 @@
+SPOTIFY_CLIENT_ID=whateveryourclientidis
+BACKEND_URI=http://localhost:7890
+SPOTIFY_REDIRECT_URI=http://localhost:7891/home
