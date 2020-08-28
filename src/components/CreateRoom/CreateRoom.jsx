@@ -10,6 +10,11 @@ const CreateRoom = () => {
   const history = useHistory();
 
   const handleClick = () => {
+    if(!username) {
+      alert('please choose a username!');
+      return;
+    }
+    
     socket.emit('CREATE', { token, username });
 
     socket.on('CODE', (generatedId) => {
