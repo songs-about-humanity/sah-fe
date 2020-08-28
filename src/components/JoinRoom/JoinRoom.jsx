@@ -10,6 +10,16 @@ export default function JoinRoom() {
   const { username } = useSelector(state => state);
 
   const handleSubmit = (event) => {
+    if(!username) {
+      alert('please choose a username!');
+      return;
+    }
+
+    if(!roomCode) {
+      alert('please enter a room code!');
+      return;
+    }
+
     event.preventDefault();
     socket.emit('JOIN', { room_id: roomCode, name: username });
     history.push(`/room/${roomCode}`);
