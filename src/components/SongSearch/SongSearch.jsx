@@ -38,7 +38,7 @@ export const SongSearch = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="song-search" onSubmit={handleSubmit}>
         <input
           type='text'
           name='song-search'
@@ -47,14 +47,12 @@ export const SongSearch = () => {
         </input>
         <button>Search</button>
       </form>
-      <div>
+      <div className="song-list">
         {
           searchResults.map((songData, i) => {
             const { title, artist } = songData;
             return <ul key={i}>
-              <li>{title}</li>
-              <li>{artist}</li>
-              <button onClick={() => handleSelect(songData)}>Select</button>
+              <li><b>{title},</b> {artist} <button onClick={() => handleSelect(songData)}>Select</button></li>
             </ul>;
           })
         }

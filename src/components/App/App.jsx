@@ -13,13 +13,15 @@ import './App.css';
 export default function App() {
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Splash} />
-        <Route exact path="/home" component={Home}/>
-        <Route exact path="/room/:code" component={Room} />
-        <Route exact path="/results" component={Results} />
-      </Switch>
-    </Router>
+    <div className="app-wrapper">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Splash} />
+          <Route exact path="/home" component={Home}/>
+          <Route exact path="/room/:code" component={Room} />
+          <Route exact path="/results" component={Results} />
+        </Switch>
+      </Router>
+    </div>
   );
 }

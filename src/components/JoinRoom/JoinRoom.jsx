@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './JoinRoom.css';
 
 export default function JoinRoom() {
   const [roomCode, setRoomCode] = useState('');
@@ -31,7 +30,7 @@ export default function JoinRoom() {
           placeholder="Enter Room Code"
           onChange={handleChange}
         />
-        <button>Join Room</button>
+        <button>Join</button>
       </form>
     </>
   );

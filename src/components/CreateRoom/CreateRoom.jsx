@@ -19,7 +19,7 @@ const CreateRoom = () => {
 
   return (
     <div>
-      <button className="create-room" onClick={handleClick}>Create New Room</button>
+      <button className="create-room" onClick={handleClick}>Create</button>
     </div>
   );
 };
