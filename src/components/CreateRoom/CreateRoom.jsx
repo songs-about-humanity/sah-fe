@@ -2,7 +2,6 @@ import React from 'react';
 import { useSocket } from 'react-socket-io-hooks';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './CreateRoom.css';
 
 const CreateRoom = () => {
   const { token, username } = useSelector(state => state);
@@ -24,7 +23,7 @@ const CreateRoom = () => {
 
   return (
     <div>
-      <button className="create-room" onClick={handleClick}>Create</button>
+      <button onClick={handleClick}>Create</button>
     </div>
   );
 };
