@@ -1,6 +1,6 @@
 const CACHE_NAME = 'version-1';
 
-const urlsToCache = ['index.html', './src/offline.html'];
+const urlsToCache = ['/src/index.html', '/src/offline.html'];
 
 // const urlsToCache = ['index.html', 'offline.html'];
 
