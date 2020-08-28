@@ -21,16 +21,14 @@ export default function reducer(state, action) {
         round: action.payload.room.round,
         currentPrompt: action.payload.room.currentPrompt
       };
-    case 'UPDATE_PARTICIPANT_LIST':
-      return { ...state, participants: action.payload.participants };
     case 'PLAY_SONG':
       return { ...state, nowPlaying: action.payload };
     case 'PAUSE': 
       return { ...state, nowPlaying: '' };
-    case 'NEXT_ROUND':
-      return { ...state, round: state.round + 1 };
     case 'GAME_WINNER': 
       return { ...state, winner: action.payload };
+    case 'CODE':
+      return { ...state, room_id: action.payload };
     case 'RESET':
       return { 
         room_id: null,

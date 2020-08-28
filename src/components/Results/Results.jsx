@@ -22,10 +22,10 @@ const Results = () => {
           <p><span className="role-emphasis">Winner:</span></p>
           <p>{winner?.name}</p>
         </div>
-        <img src={verticalEarbuds} />
+        <img src={verticalEarbuds} alt="earbuds" />
         <div className="participants-container">
           <p><span className="role-emphasis">Participants:</span></p> {
-            participants.map(participant => <><p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p></>)
+            participants.map(participant => <p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p>)
           }
         </div>
       </section>

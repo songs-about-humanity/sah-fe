@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import verticalEarbuds from '../../../public/assets/vertical_earbuds.svg';
 
 const Room = () => {
-  let { room_id, host, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
+  let { room_id, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
@@ -17,8 +17,6 @@ const Room = () => {
   }, [room_id]);
 
   useEffect(() => {
-
-    console.log('this is the current prompt', currentPrompt);
     if(winner) {
       history.push('/results');
     }
@@ -36,22 +34,7 @@ const Room = () => {
 
   useEffect(() => {
     setIsJudge(socket.id === judge?.id);
-    console.log(isJudge);
   }, [judge]);
-
-  // [a, b, c, d]
-  // [0] judge is a
-  // useEffect(() => {
-  //   let judgeIndex = round;
-
-  //   if(participants.length <= round) {
-  //     judgeIndex = round % participants.length;
-  //   }
-  //   setJudge(participants[judgeIndex]?.name);
-  // }, [round, judge]);
-  // have 'hasSelected' in state
-  // need to see if an id of a person who has selected is the current user
-  // disable button if that is the case
 
   return (
     <div className="room-container">
@@ -66,10 +49,10 @@ const Room = () => {
           <p><span className="role-emphasis">Judge:</span></p>
           <p>{judge?.name}</p>
         </div>
-        <img src={verticalEarbuds} />
+        <img src={verticalEarbuds} alt="earbuds" />
         <div className="participants-container">
           <p><span className="role-emphasis">Participants:</span></p> {
-            participants.map(participant => <><p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p></>)
+            participants.map(participant => <p key={participant?.id}>{participant?.name} - Score: {participant?.score}</p>)
           }
         </div>
       </section>

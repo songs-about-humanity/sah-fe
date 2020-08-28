@@ -1,8 +1,7 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSocket, useSocketSelector } from 'react-socket-io-hooks';
-
-// Play a specified track on the Web Playback SDK's device ID
 
 function play(device_id, _token, uri) {
   fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
@@ -23,6 +22,7 @@ function pause(device_id, _token) {
   });
 }
 
+// eslint-disable-next-line react/prop-types
 export default function SpotifyPlayer({ queue, isJudge }) {
   const socket = useSocket();
   const { room_id, nowPlaying } = useSocketSelector(state => state);
@@ -34,8 +34,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
 
 
   useEffect(() => {
-    console.log('in useeffect');
-    if(!nowPlaying) {
+    if(!nowPlaying && deviceId) {
       pause(deviceId, token);
     }
   }, [nowPlaying]);
@@ -96,24 +95,23 @@ export default function SpotifyPlayer({ queue, isJudge }) {
   }, [spotifyReady, token]);
 
   const handleClick = (songData) => {
-    console.log('clicked play for ' + songData.title + ' in room ' + room_id);
     socket.emit('PLAY', { room_id, songData });
   };
 
   const handlePause = (deviceId, token) => {
-    console.log('in here');
     socket.emit('PAUSE', room_id);
     pause(deviceId, token);
   };
 
   const handleWinner = (participant) => {
     pause(deviceId, token);
-    console.log('selected winner', participant);
     socket.emit('WINNER', { room_id, winner: participant });
   };
 
   useEffect(() => {
-    play(deviceId, token, nowPlaying.uri);
+    if(deviceId) {
+      play(deviceId, token, nowPlaying.uri);
+    }
   }, [nowPlaying]);
 
   return (<div className="queue-container">
@@ -122,7 +120,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
       {
         queue.map((queueItem, i) => {
           const { participant, songData } = queueItem;
-          return <>
+          return <div key={queueItem + i}>
             <p>{songData.artist} - {songData.title}</p>
             { isJudge && <>
               <button
@@ -144,7 +142,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
               Select Winner
               </button>
             </>}
-          </>;
+          </div>;
         })
       }
     </div>

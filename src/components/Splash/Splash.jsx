@@ -6,7 +6,7 @@ export const Splash = () => {
   return (
     <>
       <header className="header-container">
-        <img src={logo} />
+        <img src={logo} alt="SAH logo" />
       </header>
       <section>
         <p className="whitespace-p">
@@ -20,6 +20,5 @@ export const Splash = () => {
     </>
   );
 };
-
 
 export default Splash;
