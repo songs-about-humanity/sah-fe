@@ -16,7 +16,7 @@ const Results = () => {
       <h1>Winner: {winner?.name}</h1>
       <h2>Participants</h2>
       {
-        participants.map(participant => <p key={participant?.id}><h3>{participant?.name}</h3><h4>Score: {participant?.score}</h4></p>)
+        participants.map(participant => <p key={participant.id}><h3>{participant?.name}</h3><h4>Score: {participant?.score}</h4></p>)
       }
       <button onClick={handleHomeClick}>Home</button>
       

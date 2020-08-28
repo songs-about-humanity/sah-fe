@@ -19,8 +19,6 @@ export const SongSearch = () => {
     spotifyApi.setAccessToken(token);
     spotifyApi.searchTracks(songQuery)
       .then(data => {
-        console.log(data.tracks.items);
-        
         const relevantData = data.tracks.items.map(result => ({
           uri: result.uri,
           title: result.name,
@@ -29,14 +27,12 @@ export const SongSearch = () => {
 
         setSearchResults(relevantData);
       }, error => {
+        // eslint-disable-next-line no-console
         console.error(error);
       });
-
-    console.log(`you've sent the search ${songQuery}`);
   };
 
   const handleSelect = (songData) => {
-    console.log('selected: ', songData);
     socket.emit('CHOICE', { room_id, songData });
   };
 
@@ -56,7 +52,6 @@ export const SongSearch = () => {
           searchResults.map((songData, i) => {
             const { title, artist } = songData;
             return <ul key={i}>
-              {/* <li>uri: {songData.uri}</li> */}
               <li>{title}</li>
               <li>{artist}</li>
               <button onClick={() => handleSelect(songData)}>Select</button>

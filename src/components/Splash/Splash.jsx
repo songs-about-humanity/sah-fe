@@ -7,13 +7,11 @@ export const Splash = () => {
   return (
     <div className="splash-container">
       <div className="header-container">
-        <img src={logo} />
+        <img src={logo} alt='SAH logo'/>
         <OAuth />
       </div>
-   
     </div>
   );
 };
-
 
 export default Splash;

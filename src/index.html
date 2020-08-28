@@ -5,17 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <!-- Spotify web player SDK import -->
   <title>sah-fe</title>
+  <meta name="theme-color" content="#00ccff" />
+  <link rel="apple-touch-icon" href="../public/images/logo.png" />
+  <link rel="icon" type="image/png" href="../public/images/logo.png" />
+  <link rel="manifest" href="../manifest.json" />
+  <meta name="description" content="Songs About Humanity game built in React" />
 </head>
 
 <body>
+  <noscript>You need to enable JavaScript to run this app</noscript>
   <div id="root"></div>
-  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script>
+  if('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('../serviceworker.js')
+      .then((reg) => console.log('Success: ', reg.scope))
+      .catch((err) => console.log('Failure: ', err))
+    })
+  }
+  </script>
 </body>
-
 </html>
