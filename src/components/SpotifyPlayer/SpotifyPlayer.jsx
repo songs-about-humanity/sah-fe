@@ -57,7 +57,8 @@ export default function SpotifyPlayer({ queue, isJudge }) {
 
     const player = new Spotify.Player({
       name: 'Web Playback SDK Template',
-      getOAuthToken: cb => { cb(token); }
+      getOAuthToken: cb => { cb(token); },
+      volume: 0.5
     });
     // Error handling
     player.on('initialization_error', e => console.error(e));
