@@ -24,15 +24,15 @@ export default function JoinRoom() {
 
     socket.emit('JOIN', { room_id: roomCode, name: username });
 
-    let validCode;
+    socket.on('JOIN_SUCCESS', () => {
+      history.push(`/room/${roomCode}`);
+    });
 
     socket.on('JOIN_ERROR', () => {
-      validCode = false;
       alert('Game already in progress');
     });
 
-    if(validCode) history.push(`/room/${roomCode}`);
-    
+
     // eslint-disable-next-line no-console
     console.log(`you have joined the room ${roomCode}!`);
   };
