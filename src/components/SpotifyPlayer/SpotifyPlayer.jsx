@@ -59,6 +59,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
       name: 'Web Playback SDK Template',
       getOAuthToken: cb => { cb(token); }
     });
+    
     // Error handling
     player.on('initialization_error', e => console.error(e));
     player.on('authentication_error', e => console.error(e));

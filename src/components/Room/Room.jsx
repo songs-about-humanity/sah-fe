@@ -11,6 +11,7 @@ const Room = () => {
   const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
   const history = useHistory();
+  const [hasStarted, setHasStarted] = useState(true);
 
   useEffect(() => {
     document.title = room_id;
@@ -59,11 +60,23 @@ const Room = () => {
       <section className="prompt-container">
         <p><b>Prompt: </b> {currentPrompt}</p>
       </section>
+      {
+        !hasStarted && <div>
+          <p>
+            Is everyone here?
+          </p>
+          <button onClick={() => setHasStarted(true)}>
+            Start game
+          </button>
+        </div>
+      }
       <hr></hr>
-      {(!playerHasSelected && !isJudge) && <SongSearch/>}
-      <section>
-        <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
-      </section>
+      {
+        hasStarted && <section>
+          {(!playerHasSelected && !isJudge) && <SongSearch/>}
+          <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
+        </section>
+      }
     </div>
   );
 };
