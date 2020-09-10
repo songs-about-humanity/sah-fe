@@ -60,6 +60,7 @@ export default function SpotifyPlayer({ queue, isJudge }) {
       getOAuthToken: cb => { cb(token); },
       volume: 0.5
     });
+    
     // Error handling
     player.on('initialization_error', e => console.error(e));
     player.on('authentication_error', e => console.error(e));
