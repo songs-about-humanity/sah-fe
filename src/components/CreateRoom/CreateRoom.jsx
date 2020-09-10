@@ -13,7 +13,7 @@ const CreateRoom = () => {
       alert('please choose a username!');
       return;
     }
-    
+
     socket.emit('CREATE', { token, username });
 
     socket.on('CODE', (generatedId) => {
