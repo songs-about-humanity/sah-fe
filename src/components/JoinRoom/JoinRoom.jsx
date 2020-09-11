@@ -22,7 +22,7 @@ export default function JoinRoom() {
       return;
     }
 
-    socket.emit('JOIN', { room_id: roomCode, name: username });
+    socket.emit('JOIN', { room_id: roomCode.toLowerCase(), name: username });
 
     socket.on('JOIN_SUCCESS', () => {
       history.push(`/room/${roomCode}`);
