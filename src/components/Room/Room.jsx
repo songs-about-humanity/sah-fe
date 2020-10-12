@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import verticalEarbuds from '../../../public/assets/vertical_earbuds.svg';
 
 const Room = () => {
-  let { room_id, participants, songQueue, round, judge, winner, currentPrompt } = useSocketSelector(state => state);
+  let { room_id, participants, songQueue, round, judge, winner, currentPrompt, hasStarted } = useSocketSelector(state => state);
   const [playerHasSelected, setPlayerHasSelected] = useState(false);
   const [isJudge, setIsJudge] = useState(false);
   const socket = useSocket();
@@ -56,14 +56,26 @@ const Room = () => {
           }
         </div>
       </section>
-      <section className="prompt-container">
-        <p><b>Prompt: </b> {currentPrompt}</p>
-      </section>
-      <hr></hr>
-      {(!playerHasSelected && !isJudge) && <SongSearch/>}
-      <section>
-        <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
-      </section>
+      {
+        !hasStarted && isJudge && <div>
+          <p>
+            Is everyone here?
+          </p>
+          <button onClick={() => socket.emit('START_GAME', room_id)}>
+            Start game
+          </button>
+        </div>
+      }
+      {
+        hasStarted && <section>
+          <section className="prompt-container">
+            <p><b>Prompt: </b> {currentPrompt}</p>
+          </section>
+          <hr></hr>
+          {(!playerHasSelected && !isJudge) && <SongSearch/>}
+          <SpotifyPlayer queue={songQueue} isJudge={isJudge} />
+        </section>
+      }
     </div>
   );
 };
